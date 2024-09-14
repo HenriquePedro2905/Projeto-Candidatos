@@ -10,14 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             dados.candidatos.forEach((candidato) => {
                 if (candidato.cidade) {
-                    console.log(candidato.cidade);
                     cidadesSet.add(candidato.cidade);
                 }
 
             });
                 listaCidades = Array.from(cidadesSet)
 
-                console.log(listaCidades)
                 listaCidades.forEach(cidade => {
                     let option = document.createElement('option');
                     option.value = cidade;
@@ -44,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             const nomeCompleto = document.createElement('span');
                             const cidade = document.createElement('span');
                             const partido = document.createElement('span');
-                            const siglaPartido = document.createElement('span');
                             const instagramLink = document.createElement('a');
                             const instagramImg = document.createElement('img');
                             const facebookLink = document.createElement('a');
