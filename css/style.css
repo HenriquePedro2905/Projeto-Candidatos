@@ -108,6 +108,9 @@ select:focus {
 
 .candidatos #nomeCompleto {
   position: absolute;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
   top: 60%;
   left: 50%;
   font-size: 15px;
