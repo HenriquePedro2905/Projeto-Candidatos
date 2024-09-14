@@ -1,80 +1,80 @@
 {
 "candidatos":[
  {
-  "PRTD": "MOBILIZA",
-  "PARTIDO": "Mobilização Nacional",
-  "Nome": "Vitor de Oliveira Novaes",
-  "Cidade": "Cotia",
+  "siglaPartido": "MOBILIZA",
+  "partido": "Mobilização Nacional",
+  "nomeCompleto": "Vitor de Oliveira Novaes",
+  "cidade": "Cotia",
   "nomeUrna": "Vitão ",
   "numUrna": 33777,
-  "Instagram": "https:\/\/www.instagram.com\/vitornovais34?igsh=MTBmYzkzeDhvZDZwYw==",
-  "Facebook": "https:\/\/www.facebook.com\/vitor.deoliveiranovais",
-  "Link Foto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001910330\/63614"
+  "instagram": "https:\/\/www.instagram.com\/vitornovais34?igsh=MTBmYzkzeDhvZDZwYw==",
+  "facebook": "https:\/\/www.facebook.com\/vitor.deoliveiranovais",
+  "linkFoto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001910330\/63614"
  },
  {
-  "PRTD": "AGIR",
-  "PARTIDO": "Agir",
-  "Nome": "Luciano Antonio Barbieri",
-  "Cidade": "Jandira",
+  "siglaPartido": "AGIR",
+  "partido": "Agir",
+  "nomeCompleto": "Luciano Antonio Barbieri",
+  "cidade": "Jandira",
   "nomeUrna": "Luciano Barbieri ",
   "numUrna": 36555,
-  "Instagram": "https:\/\/www.instagram.com\/lucianoabarbieri?igsh=MW5ldzBwcTUzbXMwZQ==",
-  "Facebook": "https:\/\/www.facebook.com\/luciano.a.barbieri?mibextid=LQQJ4d&rdid=54xWtkrn6tryuVV4&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FCRXMAwsU4W4HhSSb%2F%3Fmibextid%3DLQQJ4d",
-  "Link Foto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001956635\/66010"
+  "instagram": "https:\/\/www.instagram.com\/lucianoabarbieri?igsh=MW5ldzBwcTUzbXMwZQ==",
+  "facebook": "https:\/\/www.facebook.com\/luciano.a.barbieri?mibextid=LQQJ4d&rdid=54xWtkrn6tryuVV4&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FCRXMAwsU4W4HhSSb%2F%3Fmibextid%3DLQQJ4d",
+  "linkFoto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001956635\/66010"
  },
  {
-  "PRTD": "PSDB",
-  "PARTIDO": "Partido Da Social Democracia Brasileira",
-  "Nome": "Sivaldo Aparecido Gomes Macedo",
-  "Cidade": "Barueri",
+  "siglaPartido": "PSDB",
+  "partido": "partido Da Social Democracia Brasileira",
+  "nomeCompleto": "Sivaldo Aparecido Gomes Macedo",
+  "cidade": "Barueri",
   "nomeUrna": "Silvio Macedo ",
   "numUrna": 45123,
-  "Instagram": "https:\/\/www.instagram.com\/silviomacedobarueri?igsh=MWhobDVhMm8wNGgwdA==",
-  "Facebook": "https:\/\/www.facebook.com\/silviomacedobarueri?mibextid=LQQJ4d&rdid=TtjOATwzogpij7Sf&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FJAbZq6x6njvQJ1pu%2F%3Fmibextid%3DLQQJ4d",
-  "Link Foto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250002300062\/62138"
+  "instagram": "https:\/\/www.instagram.com\/silviomacedobarueri?igsh=MWhobDVhMm8wNGgwdA==",
+  "facebook": "https:\/\/www.facebook.com\/silviomacedobarueri?mibextid=LQQJ4d&rdid=TtjOATwzogpij7Sf&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FJAbZq6x6njvQJ1pu%2F%3Fmibextid%3DLQQJ4d",
+  "linkFoto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250002300062\/62138"
  },
  {
-  "PRTD": "PSD",
-  "PARTIDO": "Partido Social Democrático",
-  "Nome": "Francisco das Chagas Pontes Juvêncio",
-  "Cidade": "Osasco",
+  "siglaPartido": "PSD",
+  "partido": "partido Social Democrático",
+  "nomeCompleto": "Francisco das Chagas Pontes Juvêncio",
+  "cidade": "Osasco",
   "nomeUrna": "Francis Pontes",
   "numUrna": 55253,
-  "Instagram": "https:\/\/www.instagram.com\/francispontes.fk?igsh=MWp6MTRpOWdvMXJvMg==",
-  "Facebook": "https:\/\/www.facebook.com\/francispontes",
-  "Link Foto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001963511\/67890"
+  "instagram": "https:\/\/www.instagram.com\/francispontes.fk?igsh=MWp6MTRpOWdvMXJvMg==",
+  "facebook": "https:\/\/www.facebook.com\/francispontes",
+  "linkFoto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001963511\/67890"
  },
  {
-  "PRTD": "PSD",
-  "PARTIDO": "Partido Social Democrático",
-  "Nome": "Waldir Dias Vieira",
-  "Cidade": "São Roque",
+  "siglaPartido": "PSD",
+  "partido": "partido Social Democrático",
+  "nomeCompleto": "Waldir Dias Vieira",
+  "cidade": "São Roque",
   "nomeUrna": "Waldir Dias ",
   "numUrna": 55333,
-  "Instagram": "https:\/\/www.instagram.com\/waldirdiasvieira?igsh=MXVpZDE0eTdteHd6cg==",
-  "Link Foto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001930761\/71137"
+  "instagram": "https:\/\/www.instagram.com\/waldirdiasvieira?igsh=MXVpZDE0eTdteHd6cg==",
+  "linkFoto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001930761\/71137"
  },
  {
-  "PRTD": "AVANTE",
-  "PARTIDO": "Avante",
-  "Nome": "Luiza Alves de Pontes Mariano",
-  "Cidade": "Ibiúna",
+  "siglaPartido": "AVANTE",
+  "partido": "Avante",
+  "nomeCompleto": "Luiza Alves de Pontes Mariano",
+  "cidade": "Ibiúna",
   "nomeUrna": "Luiza Mariano ",
   "numUrna": 70111,
-  "Instagram": "https:\/\/www.instagram.com\/prof.luiza.mariano?igsh=MWNsa2J1azRzM290YQ==",
-  "Facebook": "https:\/\/www.facebook.com\/luiza.alves.90038?mibextid=LQQJ4d",
-  "Link Foto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001968746\/64955"
+  "instagram": "https:\/\/www.instagram.com\/prof.luiza.mariano?igsh=MWNsa2J1azRzM290YQ==",
+  "facebook": "https:\/\/www.facebook.com\/luiza.alves.90038?mibextid=LQQJ4d",
+  "linkFoto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/2045202024/250002336073/61050"
  },
  {
-    "PRTD": "AVANTE",
-    "PARTIDO": "Avante",
-    "Nome": "Marcos Silva Sauro",
-    "Cidade": "Ibiúna",
+    "siglaPartido": "AVANTE",
+    "partido": "Avante",
+    "nomeCompleto": "Marcos Silva Sauro",
+    "cidade": "Ibiúna",
     "nomeUrna": "marcos",
     "numUrna": 70111,
-    "Instagram": "https:\/\/www.instagram.com\/prof.luiza.mariano?igsh=MWNsa2J1azRzM290YQ==",
-    "Facebook": "https:\/\/www.facebook.com\/luiza.alves.90038?mibextid=LQQJ4d",
-    "Link Foto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001968746\/64955"
+    "instagram": "https:\/\/www.instagram.com\/prof.luiza.mariano?igsh=MWNsa2J1azRzM290YQ==",
+    "facebook": "https:\/\/www.facebook.com\/luiza.alves.90038?mibextid=LQQJ4d",
+    "linkFoto": "https:\/\/divulgacandcontas.tse.jus.br\/divulga\/rest\/arquivo\/img\/2045202024\/250001968746\/64955"
    }
 ]
 }
