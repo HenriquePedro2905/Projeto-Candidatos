@@ -56,21 +56,29 @@ document.addEventListener('DOMContentLoaded', () => {
                             cidade.id = 'cidade';
                             partido.id = 'partidoSigla';
                             
-                            // Escrevendo os dados nas variáveis
+                            // Escrevendo os dados nas variaveis
                             foto.src = candidato.linkFoto;
                             nomeUrna.textContent = candidato.nomeUrna;
                             numeroUrna.textContent = candidato.numUrna;
                             nomeCompleto.textContent = candidato.nomeCompleto;
                             cidade.textContent = candidato.cidade;
                             partido.textContent = `${candidato.partido} - ${candidato.siglaPartido}`;
-                            instagramLink.href = candidato.instagram;
-                            instagramImg.src = 'svgs/instagram.svg';
-                            facebookLink.href = candidato.facebook;
-                            facebookImg.src = 'svgs/facebook.svg';
 
-                            // Formatando link e icone - instagram e facebook
-                            instagramLink.appendChild(instagramImg);
-                            facebookLink.appendChild(facebookImg);
+                            // Verificar se o Instagram esta definido
+                            if (candidato.instagram) {
+                                instagramLink.href = candidato.instagram;
+                                instagramImg.src = 'svgs/instagram.svg';
+                                instagramLink.appendChild(instagramImg);
+                                perfilDiv.appendChild(instagramLink);
+                            }
+
+                            // Verificar se o Facebook esta definido
+                            if (candidato.facebook) {
+                                facebookLink.href = candidato.facebook;
+                                facebookImg.src = 'svgs/facebook.svg';
+                                facebookLink.appendChild(facebookImg);
+                                perfilDiv.appendChild(facebookLink);
+                            }
 
                             // Exibir os dados na tela
                             perfilDiv.appendChild(foto);
@@ -79,11 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             perfilDiv.appendChild(nomeCompleto);
                             perfilDiv.appendChild(cidade);
                             perfilDiv.appendChild(partido);
-
-                            // perfilDiv.appendChild(siglaPartido);
-                            perfilDiv.appendChild(instagramLink);
-                            perfilDiv.appendChild(facebookLink);
-
+                                             
+                            // Exibi tudo na tela
                             divCandidatos.appendChild(perfilDiv);
                         }
                     })
@@ -91,6 +96,3 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 })
-
-
-
