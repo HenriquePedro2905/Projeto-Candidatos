@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+body {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  background-color: #163751;
+}
+
+h1 {
+  text-align: center; 
+  margin-bottom: 20px;
+  color: white;
+}
+
+select {
+  font-family: 'Lato', sans-serif;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #e6f7ff; 
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  margin-bottom: 20px;
+  width: 350px;
+  height: 30px;
+}
+
+select:hover {
+  background-color: #d9f0ff; 
+}
+
+select:focus {
+  border-color: #66b3ff; 
+  box-shadow: 0 0 5px rgba(102, 179, 255, 0.5);
+}
+.candidatos{
+}
+.candidatos div{
+  width: 350px;
+  height: 500px;
+  background-color: #FCFFA5;
+  border-radius: 10px;
+  position: relative;
+}
+
+.candidatos img{
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%); 
+  width: 141px;
+  height: 188px;
+  border-radius: 10px;
+}
+
+.candidatos #facebook{
+  position: absolute;
+  top: 85%;
+  left: 60%;
+  width: 40px;
+  height: 40px;
+}
+.candidatos #instagram{
+  position: absolute;
+  top: 85%;
+  left: 40%;
+  width: 40px;
+  height: 40px;
+}
+
+.candidatos #nomeUrna{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  font-size: 23px;
+  transform: translateX(-50%); 
+  font-weight: 900;
+  font-style: normal;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.candidatos #numeroUrna{
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  font-size: 20px;
+  transform: translateX(-50%); 
+  font-weight: 900;
+  font-style: normal;
+}
+
+.candidatos #nomeCompleto{
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  font-size: 15px;
+  transform: translateX(-50%); 
+  font-weight: 400;
+  font-style: normal;
+}
+
+.candidatos #cidade{
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  font-size: 15px;
+  transform: translateX(-50%); 
+  font-weight: 400;
+  font-style: normal;
+}
+
+.candidatos #partidoSigla {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  font-size: 15px;
+  transform: translateX(-50%);
+  font-weight: 400;
+  font-style: normal;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
