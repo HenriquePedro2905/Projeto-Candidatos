@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             const facebookLink = document.createElement('a');
                             const facebookImg = document.createElement('img');
 
-                            //Definindo id dos elementos do perfil
+                            // Definindo id dos elementos do perfil
                             instagramImg.id = 'instagram';
                             facebookImg.id = 'facebook';
                             nomeUrna.id = 'nomeUrna';
@@ -58,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             
                             // Escrevendo os dados nas variaveis
                             foto.src = candidato.linkFoto;
-                            nomeUrna.textContent = candidato.nomeUrna;
+                            nomeUrna.textContent = candidato.nomeUrna.toUpperCase(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  );
                             numeroUrna.textContent = candidato.numUrna;
                             nomeCompleto.textContent = candidato.nomeCompleto;
                             cidade.textContent = candidato.cidade;
-                            partido.textContent = `${candidato.partido} - ${candidato.siglaPartido}`;
+                            partido.textContent = `${candidato.partido} - ${candidato.siglaPartido.toUpperCase()}`;
 
                             // Verificar se o Instagram esta definido
                             if (candidato.instagram) {
