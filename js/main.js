@@ -58,9 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             
                             // Escrevendo os dados nas variaveis
                             foto.src = candidato.linkFoto;
-                            nomeUrna.textContent = candidato.nomeUrna.toUpperCase(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  );
+                            nomeUrna.textContent = candidato.nomeUrna.toUpperCase();
                             numeroUrna.textContent = candidato.numUrna;
-                            nomeCompleto.textContent = candidato.nomeCompleto;
+
+                            // Expressão Regular para deixar as primeiras letras maiusculas
+                            capitalize = candidato.nomeCompleto.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+                            nomeCompleto.textContent = capitalize
+
                             cidade.textContent = candidato.cidade;
                             partido.textContent = `${candidato.partido} - ${candidato.siglaPartido.toUpperCase()}`;
 
