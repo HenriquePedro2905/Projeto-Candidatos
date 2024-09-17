@@ -4,8 +4,8 @@
     "description": "Busca de candidatos a vereadores cadastrados no sistema",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#ffffff",
+    "background_color": "#f7f7f7",
+    "theme_color": "#f7f7f7",
     "orientation": "portrait-primary",
     "icons": [  
       {
