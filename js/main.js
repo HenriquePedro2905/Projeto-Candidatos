@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 instagramImg.src = 'svgs/instagram.svg';
                                 instagramLink.appendChild(instagramImg);
                                 perfilDiv.appendChild(instagramLink);
+                            } else {
+                                facebookImg.id = 'uniqueIcon'
                             }
 
                             // Verificar se o Facebook esta definido
@@ -82,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 facebookImg.src = 'svgs/facebook.svg';
                                 facebookLink.appendChild(facebookImg);
                                 perfilDiv.appendChild(facebookLink);
+                            } else {
+                                instagramImg.id = 'uniqueIcon'
                             }
 
                             // Exibir os dados na tela
