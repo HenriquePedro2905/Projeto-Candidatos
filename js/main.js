@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     dados.candidatos.forEach((candidato) => {
                         if(selectCidades.value == candidato.cidade) {
-                            
-                         
+                                                     
+
                             // Variáveis de elementos do perfil
                             const perfilDiv = document.createElement('div');
                             const foto = document.createElement('img');
