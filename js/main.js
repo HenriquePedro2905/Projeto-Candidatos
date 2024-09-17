@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                     
                 
-                selectCidades.addEventListener('click',() => {
+                selectCidades.addEventListener('change',() => {
                     let divCandidatos = document.querySelector('.candidatos');
                             
                             //Limpando as div para atualizar os dados exibidos
