@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Verificar se o Instagram esta definido
                             if (candidato.instagram) {
                                 instagramLink.href = candidato.instagram;
-                                instagramImg.src = 'svgs/instagram.svg';
+                                instagramImg.src = 'images/instagram.svg';
                                 instagramLink.appendChild(instagramImg);
                                 perfilDiv.appendChild(instagramLink);
                             } else {
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Verificar se o Facebook esta definido
                             if (candidato.facebook) {
                                 facebookLink.href = candidato.facebook;
-                                facebookImg.src = 'svgs/facebook.svg';
+                                facebookImg.src = 'images/facebook.svg';
                                 facebookLink.appendChild(facebookImg);
                                 perfilDiv.appendChild(facebookLink);
                             } else {

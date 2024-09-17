@@ -1,0 +1,24 @@
+{
+    "name": "Projeto Candidatos",
+    "short_name": "Candidatos",
+    "description": "Busca de candidatos a vereadores cadastrados no sistema",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "orientation": "portrait-primary",
+    "icons": [  
+      {
+        "src": "/images/icon.jpeg",
+        "sizes": "48x48",
+        "type": "image/jpeg"
+      },
+      {
+        "src": "/images/logo.jpeg",
+        "sizes": "512x512",
+        "type": "image/jpeg"
+      }
+    ],
+    "lang": "pt-BR"
+  }
+  
