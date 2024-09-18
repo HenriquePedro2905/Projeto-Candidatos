@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         response.json().then((dados) => {
 
             const cidadesSet = new Set();
-
+            
+            // Criando a lista de cidades unicas
             dados.candidatos.forEach((candidato) => {
                 if (candidato.cidade) {
                     cidadesSet.add(candidato.cidade);
@@ -16,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
                 listaCidades = Array.from(cidadesSet)
 
+                listaCidades.sort((a, b) => a.localeCompare(b)); // Ordena as cidades por ordem alfabética, ignorando os acentos
+
+                // Passa por todas as cidades e cria as options do select
                 listaCidades.forEach(cidade => {
                     let option = document.createElement('option');
                     option.value = cidade;
@@ -23,17 +27,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     selectCidades.appendChild(option);
                 })
                     
-                
+                // Evento escutando dentro do select
                 selectCidades.addEventListener('change',() => {
                     let divCandidatos = document.querySelector('.candidatos');
                             
-                            //Limpando as div para atualizar os dados exibidos
-                            divCandidatos.innerHTML = '';
+                    // Pega os candidados com base no valor do select
+                    const candidatosFiltrados = dados.candidatos.filter(candidato => candidato.cidade === selectCidades.value);
 
-                    dados.candidatos.forEach((candidato) => {
-                        if(selectCidades.value == candidato.cidade) {
+                    // Função para ordenar os candidatos em ordem alfabética
+                    candidatosFiltrados.sort((a, b) => a.nomeCompleto.localeCompare(b.nomeCompleto));
+
+                    
+                    divCandidatos.innerHTML = ''; // Limpando as div para atualizar os dados exibidos
+
+                    // Itereando por cada candidato
+                    candidatosFiltrados.forEach((candidato) => {
                                                      
-
                             // Variáveis de elementos do perfil
                             const perfilDiv = document.createElement('div');
                             const foto = document.createElement('img');
@@ -60,13 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             foto.src = candidato.linkFoto;
                             nomeUrna.textContent = candidato.nomeUrna.toUpperCase();
                             numeroUrna.textContent = candidato.numUrna;
-
-                            // Expressão Regular para deixar as primeiras letras maiusculas
-                            capitalize = candidato.nomeCompleto.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
-                            nomeCompleto.textContent = capitalize
-
                             cidade.textContent = candidato.cidade;
                             partido.textContent = `${candidato.partido} - ${candidato.siglaPartido.toUpperCase()}`;
+
+                            // Expressão Regular para deixar as primeiras letras maiusculas do NomeCompleto
+                            capitalize = candidato.nomeCompleto.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+                            nomeCompleto.textContent = capitalize
 
                             // Verificar se o Instagram esta definido
                             if (candidato.instagram) {
@@ -88,17 +96,16 @@ document.addEventListener('DOMContentLoaded', () => {
                                 instagramImg.id = 'uniqueIcon'
                             }
 
-                            // Exibir os dados na tela
+                            // Joga os dados tudo dentro da div 'perfildiv'
                             perfilDiv.appendChild(foto);
                             perfilDiv.appendChild(nomeUrna);
                             perfilDiv.appendChild(numeroUrna);
                             perfilDiv.appendChild(nomeCompleto);
                             perfilDiv.appendChild(cidade);
                             perfilDiv.appendChild(partido);
-                                             
-                            // Exibi tudo na tela
-                            divCandidatos.appendChild(perfilDiv);
-                        }
+
+                            divCandidatos.appendChild(perfilDiv); // Exibi tudo na tela
+                        
                     })
                 })
         })
