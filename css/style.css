@@ -9,6 +9,7 @@ body {
   align-items: center;
   padding-top: 20px;
   background-color: #163751;
+  min-height: 100vh;
 }
 
 h1 {
@@ -100,12 +101,12 @@ select:focus {
   left: 50%;
   transform: translateX(-50%);
   font-weight: 900;
-  padding-left: 5%;       /* 5% de espaçamento da esquerda */
-  padding-right: 5%;      /* 5% de espaçamento da direita */
-  width: 90%;             /* Largura ajustada ao conteúdo */
+  padding-left: 5%;       
+  padding-right: 5%;      
+  width: 90%;             
   text-align: center;
-  overflow: hidden;       /* Esconde o texto que ultrapassar os limites */
-  text-overflow: ellipsis; /* Adiciona reticências ao texto que ultrapassar */
+  overflow: hidden;       
+  text-overflow: ellipsis; 
   font-size: 17.5px;
   word-wrap: break-word;
 }
@@ -144,7 +145,7 @@ select:focus {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 95%; /* Garantir que o texto não ultrapasse a caixa */
+  max-width: 95%; 
 }
 
 .candidatos #partidoSigla {
@@ -161,6 +162,21 @@ select:focus {
   font-weight: 700;
 }
 
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+}
 
 
 @media (max-width: 768px) {
@@ -173,4 +189,12 @@ select:focus {
     width: 90%;
     margin-bottom: 20px;
   }
+
+  footer {
+    font-size: 12px; 
+    padding: 8px; 
+    position: relative;
+    margin-top: auto;
+  }
+
 }
