@@ -1,3 +1,4 @@
+//v1
 let selectCidades = document.querySelector('#cidades');
 let listaCidades = [];
 
