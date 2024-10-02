@@ -29,18 +29,10 @@ async function getPrint(div, facebookLink, instagramLink) {
             const shareData = {
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
-            let strFace;
-            let strInsta;
-
-            if (facebookLink) {
-                strFace = 'Facebook: '
-            }
-            if (instagramLink) {
-                strInsta = 'Instagram: '
-            }
+     
             let textToShare = ''
             if (instagramLink || facebookLink) {
-                textToShare = `${strFace} ${facebookLink} \n${strInsta} ${instagramLink}`
+                textToShare = `Facebook: ${facebookLink} \nInstagram: ${instagramLink}`
                 console.log(textToShare)
             }
 
