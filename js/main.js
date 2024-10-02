@@ -39,7 +39,8 @@ async function getPrint(div, facebookLink, instagramLink) {
             }
 
             // Adicionar o texto com os links
-            if (textToShare.length !== 0) {
+            if (textToShare !== '') {
+                console.log(shareData)
                 shareData.text = textToShare;
             }
 
