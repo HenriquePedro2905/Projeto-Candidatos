@@ -3,6 +3,18 @@ let selectCidades = document.querySelector('#cidades');
 let listaCidades = [];
 
 async function getPrint(div, facebookLink, instagramLink) {
+
+    function base64ToBlob(base64, type = 'image/jpeg') {
+        const byteCharacters = atob(base64);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        return new Blob([byteArray], { type });
+    }
+
+    
     // Aguardar o carregamento da imagem
     await new Promise(resolve => {
         html2canvas(div, {
@@ -11,8 +23,12 @@ async function getPrint(div, facebookLink, instagramLink) {
             backgroundColor: '#a8a8a8'
         }).then(canvas => {
             const imagem = canvas.toDataURL("image/jpeg");
+            console.log(imagem)
+            // Remover o prefixo 'data:image/jpeg;base64,' da string
+            const base64Data = imagem.split(',')[1];
+            const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
             const shareData = {
-                files: [new File([imagem], "image.jpeg", { type: "image/jpeg" })],
+                files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
 
             if (facebookLink) {
