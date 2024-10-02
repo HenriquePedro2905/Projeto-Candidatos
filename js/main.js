@@ -38,15 +38,15 @@ async function getPrint(div, facebookLink, instagramLink) {
             if (instagramLink) {
                 strInsta = 'Instagram: '
             }
-
+            let textToShare = ''
             if (instagramLink || facebookLink) {
-                shareData.url = `${strFace} ${facebookLink} \n${strInsta} ${instagramLink}`
+                textToShare = `${strFace} ${facebookLink} \n${strInsta} ${instagramLink}`
+                console.log(textToShare)
             }
 
             // Adicionar o texto com os links
             if (textToShare !== '') {
-                console.log(textToShare)
-                shareData.title = textToShare;
+                shareData.url = textToShare;
             }
 
             console.log(shareData)
