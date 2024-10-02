@@ -34,15 +34,28 @@ async function getPrint(div, facebookLink, instagramLink) {
             if (instagramLink) {
                 textToShare += `Instagram: ${instagramLink}\n`; // Adiciona o link do Instagram
             }
-            textToShare = 'teste'
+
             const shareData = {
-                text: textToShare, // Inclui os dois links
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
-            console.log(shareData)
+
+            console.log(shareData);
+
 
             if (navigator.share) {
-                navigator.share(shareData);
+                navigator.share(shareData).then(() => {
+                    console.log('Compartilhamento feio com sucesso!');
+
+                    if (textToShare) {
+                        const encodedText = encodeURIComponent(textToShare);
+                        const whatsappUrl = `https://wa.me/?text=${encodedText}`;
+                        console.log(whatsappUrl)
+                        window.open(whatsappUrl, '_blank'); // Abre o WhatsApp Web com o texto
+                    }
+
+                }).catch((err) => {
+                    console.log('Erro ao compartilhar: ', err);
+                })
             }
         });
     });
