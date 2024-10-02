@@ -31,16 +31,17 @@ async function getPrint(div, facebookLink, instagramLink) {
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
 
+            let textToShare = '';
             if (facebookLink) {
-                shareData.url = facebookLink
-            } else {
-                shareData.url = '';
+                textToShare += `Facebook: ${facebookLink}\n`;
             }
-            
             if (instagramLink) {
-                shareData.url =instagramLink
-            } else {
-                shareData.url = '';
+                textToShare += `Instagram: ${instagramLink}\n`;
+            }
+
+            // Adicionar o texto com os links
+            if (textToShare) {
+                shareData.text = textToShare;
             }
 
             if (navigator.share) {
