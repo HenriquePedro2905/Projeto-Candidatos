@@ -26,21 +26,25 @@ async function getPrint(div, facebookLink, instagramLink) {
             // Remover o prefixo 'data:image/jpeg;base64,' da string
             const base64Data = imagem.split(',')[1];
             const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
+            let strFace = 'Facebook: '
+            let strInsta = 'Instagram: '
             if(!facebookLink) {
-                facebookLink = ' '
+                facebookLink = ''
+                strFace = ''
             }
             if(!instagramLink) {
-                instagramLink = ' '
+                instagramLink = ''
+                strInsta = ''
             }
             
             let textToShare = ''
             if (instagramLink || facebookLink) {
-                textToShare = `Facebook: ${facebookLink} \nInstagram: ${instagramLink}`
+                //textToShare = `${strFace}${facebookLink} \n${strInsta}${instagramLink}`
+                textToShare = (strFace + facebookLink) + '\n ' + (strInsta + instagramLink)
                 console.log(textToShare)
             }
             const shareData = {
                 title: textToShare,
-                text: textToShare,
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
             console.log(shareData)
