@@ -30,10 +30,10 @@ async function getPrint(div, facebookLink, instagramLink) {
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
             if(!facebookLink) {
-                facebookLink = ''
+                facebookLink = ' '
             }
             if(!instagramLink) {
-                instagramLink = ''
+                instagramLink = ' '
             }
      
             let textToShare = ''
@@ -44,7 +44,7 @@ async function getPrint(div, facebookLink, instagramLink) {
 
             // Adicionar o texto com os links
             if (textToShare !== '') {
-                shareData.title = textToShare;
+                shareData.text = textToShare;
             }
 
             console.log(shareData)
