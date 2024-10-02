@@ -41,7 +41,7 @@ async function getPrint(div, facebookLink, instagramLink) {
             let textToShare = ''
             if (instagramLink || facebookLink) {
                 //textToShare = `${strFace}${facebookLink} \n${strInsta}${instagramLink}`
-                textToShare = (strFace + facebookLink) + '\n' +  (strInsta + instagramLink).trim();
+                textToShare = (strFace + facebookLink) + ' \n ' +  (strInsta + instagramLink).trim();
                 console.log(textToShare)
             }
             const shareData = {
