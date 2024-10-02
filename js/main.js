@@ -29,13 +29,18 @@ async function getPrint(div, facebookLink, instagramLink) {
             const shareData = {
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
+            let strFace;
+            let strInsta;
 
-            let textToShare = '';
             if (facebookLink) {
-                shareData.url += facebookLink
+                strFace = 'Facebook: '
             }
             if (instagramLink) {
-                shareData.url += instagramLink
+                strInsta = 'Instagram: '
+            }
+
+            if (instagramLink || facebookLink) {
+                shareData.url = `${strFace} ${facebookLink} \n${strInsta} ${instagramLink}`
             }
 
             // Adicionar o texto com os links
