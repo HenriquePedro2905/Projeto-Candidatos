@@ -26,36 +26,32 @@ async function getPrint(div, facebookLink, instagramLink) {
             // Remover o prefixo 'data:image/jpeg;base64,' da string
             const base64Data = imagem.split(',')[1];
             const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
-
-            let textToShare = '';
-            if (facebookLink) {
-                textToShare += `Facebook: ${facebookLink}\n`; // Adiciona o link do Facebook
+            
+            let strFace = 'Facebook: '
+            let strInsta = 'Instagram: '
+            if(!facebookLink) {
+                facebookLink = ''
+                strFace = ''
             }
-            if (instagramLink) {
-                textToShare += `Instagram: ${instagramLink}\n`; // Adiciona o link do Instagram
+            if(!instagramLink) {
+                instagramLink = ''
+                strInsta = ''
             }
-
+            
+            let textToShare = ''
+            if (instagramLink || facebookLink) {
+                //textToShare = `${strFace}${facebookLink} \n${strInsta}${instagramLink}`
+                textToShare = (strFace + facebookLink) + ' ' +  (strInsta + instagramLink)
+                console.log(textToShare)
+            }
             const shareData = {
+                url: textToShare,
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
-
-            console.log(shareData);
-
+            console.log(shareData)
 
             if (navigator.share) {
-                navigator.share(shareData).then(() => {
-                    console.log('Compartilhamento feio com sucesso!');
-
-                    if (textToShare) {
-                        const encodedText = encodeURIComponent(textToShare);
-                        const whatsappUrl = `https://wa.me/?text=${encodedText}`;
-                        console.log(whatsappUrl)
-                        window.open(whatsappUrl, '_blank'); // Abre o WhatsApp Web com o texto
-                    }
-
-                }).catch((err) => {
-                    console.log('Erro ao compartilhar: ', err);
-                })
+                navigator.share(shareData);
             }
         });
     });
