@@ -10,7 +10,7 @@ async function getPrint(div, facebookLink, instagramLink) {
             useCORS: true,
             backgroundColor: '#a8a8a8'
         }).then(canvas => {
-            const imagem = canvas.toDataURL("image/jpg"');
+            const imagem = canvas.toDataURL("image/jpg");
             const shareData = {
                 files: [new File([imagem], "image.jpg", { type: "image/jpg" })],
             };
