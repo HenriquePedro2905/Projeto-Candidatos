@@ -33,10 +33,14 @@ async function getPrint(div, facebookLink, instagramLink) {
 
             if (facebookLink) {
                 shareData.url = facebookLink
+            } else {
+                shareData.url = '';
             }
             
             if (instagramLink) {
                 shareData.url =instagramLink
+            } else {
+                shareData.url = '';
             }
 
             if (navigator.share) {
