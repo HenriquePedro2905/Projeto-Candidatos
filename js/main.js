@@ -23,7 +23,6 @@ async function getPrint(div, facebookLink, instagramLink) {
             backgroundColor: '#a8a8a8'
         }).then(canvas => {
             const imagem = canvas.toDataURL("image/jpeg");
-            console.log(imagem)
             // Remover o prefixo 'data:image/jpeg;base64,' da string
             const base64Data = imagem.split(',')[1];
             const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
@@ -40,7 +39,7 @@ async function getPrint(div, facebookLink, instagramLink) {
             }
 
             // Adicionar o texto com os links
-            if (textToShare) {
+            if (textToShare.length !== 0) {
                 shareData.text = textToShare;
             }
 
@@ -145,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv, facebookLink, instagramLink)); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv, candidato.facebook, candidato.instagram)); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
