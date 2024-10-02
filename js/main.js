@@ -32,10 +32,10 @@ async function getPrint(div, facebookLink, instagramLink) {
 
             let textToShare = '';
             if (facebookLink) {
-                textToShare += `Facebook: ${facebookLink}\n`;
+                shareData.url = facebookLink
             }
             if (instagramLink) {
-                textToShare += `Instagram: ${instagramLink}\n`;
+                textToShare = `Instagram: ${instagramLink}\n`;
             }
 
             // Adicionar o texto com os links
