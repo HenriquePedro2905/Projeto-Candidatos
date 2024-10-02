@@ -2,7 +2,7 @@
 let selectCidades = document.querySelector('#cidades');
 let listaCidades = [];
 
-async function getPrint(div) {
+async function getPrint(div, facebookLink, instagramLink) {
     // Aguardar o carregamento da imagem
     await new Promise(resolve => {
         html2canvas(div, {
@@ -10,9 +10,16 @@ async function getPrint(div) {
             useCORS: true,
             backgroundColor: '#a8a8a8'
         }).then(canvas => {
+            const imagem = canvas.toDataURL("imagem/png");
             if (navigator.share) {
                 navigator.share({
-                    files: canvas
+                    files: imagem,
+                    if (facebookLink) {
+                        url: facebookLink
+                    },
+                    if (instagramLink) {
+                        url: instagramLink
+                    }
                 })
             }
         });
@@ -113,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv)); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv, facebookLink, instagramLink)); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
