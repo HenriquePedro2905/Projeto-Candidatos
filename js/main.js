@@ -44,18 +44,22 @@ async function getPrint(div, facebookLink, instagramLink) {
                 textToShare = (strFace + facebookLink) + '\n\n' +  (strInsta + instagramLink).trim();
                 console.log(textToShare)
             }
+
+
+            const urlsArray = [
+                'https://google.com.br',
+                'https://youtube.com.br'
+            ];
+          
             const shareData = {
                 //title: textToShare,
                 //text: textToShare,
-                urls: [
-                   'https://google.com.br',
-                   'https://youtube.com.br'
-                ],
+                urls: urlsArray,
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
             console.log(shareData)
 
-            if (navigator.share) {
+            if (navigator.canShare) {
                 navigator.share(shareData);
             }
         });
