@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', getPrint(perfilDiv)); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv)); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
