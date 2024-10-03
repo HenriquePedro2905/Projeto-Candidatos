@@ -48,8 +48,8 @@ async function getPrint(div, facebookLink, instagramLink) {
                 //title: textToShare,
                 //text: textToShare,
                 urls: [
-                   facebookLink,
-                   instagramLink 
+                   'https://google.com.br',
+                   'https://youtube.com.br'
                 ],
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
