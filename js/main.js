@@ -41,17 +41,18 @@ async function getPrint(div, facebookLink, instagramLink) {
             let textToShare = ''
             if (instagramLink || facebookLink) {
                 //textToShare = `${strFace}${facebookLink} \n${strInsta}${instagramLink}`
-                textToShare = (strFace + facebookLink) + ' \n ' +  (strInsta + instagramLink).trim();
+                textToShare = (strFace + facebookLink) + '\n\n' +  (strInsta + instagramLink).trim();
                 console.log(textToShare)
             }
             const shareData = {
+                //title: textToShare,
                 text: textToShare,
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
             console.log(shareData)
 
-            if (navigator.share) {
-                navigator.share(shareData);
+            if (navigator.canShare) {
+                navigator.canShare(shareData);
             }
         });
     });
