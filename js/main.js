@@ -2,7 +2,7 @@
 let selectCidades = document.querySelector('#cidades');
 let listaCidades = [];
 
-async function getPrint(div, facebookLink, instagramLink) {
+async function getPrint(div) {
 
     function base64ToBlob(base64, type = 'image/jpeg') {
         const byteCharacters = atob(base64);
@@ -26,40 +26,12 @@ async function getPrint(div, facebookLink, instagramLink) {
             // Remover o prefixo 'data:image/jpeg;base64,' da string
             const base64Data = imagem.split(',')[1];
             const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
-            
-            let strFace = 'Facebook: '
-            let strInsta = 'Instagram: '
-            if(!facebookLink) {
-                facebookLink = ''
-                strFace = ''
-            }
-            if(!instagramLink) {
-                instagramLink = ''
-                strInsta = ''
-            }
-            
-            let textToShare = ''
-            if (instagramLink || facebookLink) {
-                //textToShare = `${strFace}${facebookLink} \n${strInsta}${instagramLink}`
-                textToShare = (strFace + facebookLink) + '\n\n' +  (strInsta + instagramLink).trim();
-                console.log(textToShare)
-            }
-
-
-            const urlsArray = [
-                'https://google.com.br',
-                'https://youtube.com.br'
-            ];
           
             const shareData = {
-                //title: textToShare,
-                //text: textToShare,
-                urls: urlsArray,
                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
             };
-            console.log(shareData)
 
-            if (navigator.canShare) {
+            if (navigator.share) {
                 navigator.share(shareData);
             }
         });
@@ -160,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv, candidato.facebook, candidato.instagram)); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', getPrint(perfilDiv)); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
