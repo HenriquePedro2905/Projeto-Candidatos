@@ -41,7 +41,7 @@ select:hover {
 
 select:focus {
   border-color: #66b3ff; 
-  box-shadow: 0 0 5px rgba(102, 179, 255, 0.5);
+  box-shadow: 0 0 5px #66b3ff80;
 }
 
 .candidatos {
@@ -188,11 +188,102 @@ footer p {
   font-size: 14px;
 }
 
+/* Estilo geral para o modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: -10%;
+  left: -0.4%;
+  justify-content: center; /* Alinha horizontalmente no centro */
+  z-index: 999;
+  align-items: center; /* Alinha verticalmente no centro */
+  width: 100vw; /* Usa 100% da largura da viewport */
+  height: 100vh; /* Usa 100% da altura da viewport */
+}
+
+.modal-content {
+  background-color: #1A4F7A; /* Cor de fundo azul do modal */
+  margin: 15% auto;
+  padding: 5px 40px 30px 40px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  text-align: center;
+  color: white; /* Texto branco */
+}
+
+/* Estilo para os botões de opções */
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal-option {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.modal-option div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-option img {
+  width: 80px; /* Tamanho do ícone */
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.modal-option #links {
+  width: 72px;
+}
+
+.modal-option span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Estilo para o botão de voltar */
+.modal-content button {
+  padding: 10px 20px;
+  font-size: 18px;
+  color: black;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.50);
+}
+
+.modal-content button:hover {
+  background-color: #ccc;
+}
+
+/* Exibir o modal quando for ativado */
+.modal.show {
+  display: block;
+}
+
 
 @media (max-width: 768px) {
   .candidatos {
     flex-direction: column;
     align-items: center;
+  }
+
+  .modal {
+    position: fixed;
+    top: 22%;
+    left: -0.4%;
+    justify-content: center; /* Alinha horizontalmente no centro */
+    z-index: 999;
+    align-items: center; /* Alinha verticalmente no centro */
+    width: 100vw; /* Usa 100% da largura da viewport */
+    height: 100vh; /* Usa 100% da altura da viewport */
   }
 
   .candidatos div {
