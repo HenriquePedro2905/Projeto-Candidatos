@@ -1,8 +1,44 @@
 //v1
 let selectCidades = document.querySelector('#cidades');
 let listaCidades = [];
+let sistema;
 
-async function getPrint(div) {
+
+function detectaSistema() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if(/android/i.test(userAgent)) {
+        sistema = 'Android';
+    }
+
+    if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        sistema = 'IOS';
+    }
+    return sistema;
+}
+
+async function getPrint(div, facebookLink, instagramLink) {
+
+    function verificaRedes(facebookLink, instagramLink) {
+        let strFace = 'Facebook: '
+        let strInsta = 'Instagram: '
+        if(!facebookLink) {
+            facebookLink = ''
+            strFace = ''
+        }
+        if(!instagramLink) {
+            instagramLink = ''
+            strInsta = ''
+        }
+        
+        let textToShare = ''
+        if (instagramLink || facebookLink) {
+            textToShare = (strFace + facebookLink) + '\n' +  (strInsta + instagramLink).trim();
+            return textToShare;
+        }
+    }
+    
+
 
     function base64ToBlob(base64, type = 'image/jpeg') {
         const byteCharacters = atob(base64);
@@ -20,16 +56,30 @@ async function getPrint(div) {
         html2canvas(div, {
             scale: 2, // Ajuste o valor conforme necessário
             useCORS: true,
-            backgroundColor: '#a8a8a8'
+            backgroundColor: '#a8a8a8'  
         }).then(canvas => {
             const imagem = canvas.toDataURL("image/jpeg");
             // Remover o prefixo 'data:image/jpeg;base64,' da string
             const base64Data = imagem.split(',')[1];
             const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
-          
-            const shareData = {
-                files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
-            };
+
+            sistema = detectaSistema();
+            links = verificaRedes(facebookLink, instagramLink)
+            
+            let shareData;
+            if (sistema == 'Android') {
+                shareData = {
+                    text: links
+                };
+
+            }
+            if (sistema == 'IOS') {
+                shareData = {
+                    text: links,
+                    files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
+                };
+            }
+
 
             if (navigator.share) {
                 navigator.share(shareData);
@@ -87,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const instagramImg = document.createElement('img');
                     const facebookLink = document.createElement('a');
                     const facebookImg = document.createElement('img');
-                    const botaoCompartilhar = document.createElement('img'); // Cria o botão para tirar print
+                    const botaoCompartilhar = document.createElement('img');
 
                     // Definindo id dos elementos do perfil
                     instagramImg.id = 'instagram';
@@ -132,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv)); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv,candidato.facebook,candidato.instagram)); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
