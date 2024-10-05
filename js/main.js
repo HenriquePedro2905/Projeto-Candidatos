@@ -48,6 +48,7 @@ function detectaSistema() {
     } else if (/linux/i.test(userAgent)) {
         sistema = 'Linux';
     }
+    console.log(sistema)
     return sistema;
 }
 
@@ -60,21 +61,27 @@ function exibeModal(div, facebook, instagram) {
     let sistemaAtual = detectaSistema()
 
     if (sistemaAtual == 'IOS')  {
-        async function getImage() {
-            let blobImage = await getPrint(perfilDiv); // Aguarda a resolução da Promise
-            return blobImage;
-        }
-        let textToShare = verificaRedes(linkFace, linkInsta);
+        async function shareIOS() {
 
-        shareData = {
-            text: textToShare,
-            files: [new File([getImage()], "image.jpeg", { type: "image/jpeg" })]
+            try {
+                let blobImage = await getPrint(perfilDiv);
+    
+                console.log(blobImage)
+                let textToShare = verificaRedes(linkFace, linkInsta);
+                console.log(textToShare)
+                shareData = {
+                    text: textToShare,
+                    files: [new File([blobImage], "image.jpeg", { type: "image/jpeg" })]
+                }
+                
+                if (navigator.share) {
+                    navigator.share(shareData);
+                }
+            } catch (err) {
+                console.log(err)
+            }
         }
-
-        if (navigator.share) {
-            navigator.share(shareData);
-        }
-
+        shareIOS();
 
     } else {
         modal.style.display = 'block'
@@ -87,7 +94,7 @@ function exibeModal(div, facebook, instagram) {
 
             try {
                 let blobImage = await getPrint(perfilDiv); // Aguarda a resolução da Promise
-        
+                console.log(blobImage)
                 let shareData = {
                     files: [new File([blobImage], "image.jpeg", { type: "image/jpeg" })]
                 };
@@ -122,63 +129,6 @@ function exibeModal(div, facebook, instagram) {
     }
 
 }
-
-
-// if (sistema == 'Android') {
-//     // if (links != undefined) {
-//         modal.style.display = 'block';
-
-//         const compartilharImagem = () => {
-//             let shareData = undefined
-//             shareData = {
-//                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
-//             }
-//             console.log('COMPARTILHOU IMAGEM', shareData)
-//             modal.style.display = 'none';
-            
-//             if (navigator.share) {
-//                 navigator.share(shareData)
-//             }
-//         }
-//         const compartilharLinks = () => {
-//             let shareData = undefined
-//             shareData = {
-//                 text: links
-//             }
-//             console.log('COMPARTILHOU LINKS', shareData)
-//             modal.style.display = 'none';
-            
-//             if (navigator.share) {
-//                 navigator.share(shareData)
-//                 shareData = undefined
-//             }
-//         }
-
-//         document.querySelector('#imagem').addEventListener('click', compartilharImagem)
-//         document.querySelector('#links').addEventListener('click', compartilharLinks)
-        
-//     // } else {
-//     //     // Envia a foto direto se a pessoa não tiver redes socias
-//     //     shareData = {
-//     //         files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
-//     //     }
-//     //     modal.style.display = 'none';
-
-//     //     if (navigator.share) {
-//     //         navigator.share(shareData)
-//     //     }
-//     // }
-
-// }
-// if (sistema == 'IOS') {
-//     shareData = {
-//         text: links,
-//         files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
-//     };
-//     if (navigator.share) {
-//         navigator.share(shareData);
-//     }
-// }
 
 
 async function getPrint(div) {
