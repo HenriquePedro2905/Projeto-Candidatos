@@ -2,17 +2,25 @@
 let selectCidades = document.querySelector('#cidades');
 let listaCidades = [];
 let sistema;
+let modal = document.querySelector('.modal')
 
+let voltarBtn = document.querySelector('#closeBtn').addEventListener('click',() => {
+    modal.style.display = 'none'
+})
 
 function detectaSistema() {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
     if(/android/i.test(userAgent)) {
         sistema = 'Android';
-    }
-
-    if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    } else if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         sistema = 'IOS';
+    }else if (/windows/i.test(userAgent)) {
+        sistema = 'Windows';
+    } else if (/macintosh|mac os x/i.test(userAgent)) {
+        sistema = 'macOS';
+    } else if (/linux/i.test(userAgent)) {
+        sistema = 'Linux';
     }
     return sistema;
 }
@@ -38,8 +46,6 @@ async function getPrint(div, facebookLink, instagramLink) {
         }
     }
     
-
-
     function base64ToBlob(base64, type = 'image/jpeg') {
         const byteCharacters = atob(base64);
         const byteNumbers = new Array(byteCharacters.length);
@@ -68,9 +74,34 @@ async function getPrint(div, facebookLink, instagramLink) {
             
             let shareData;
             if (sistema == 'Android') {
-                shareData = {
-                    text: links
-                };
+                
+                if (links != undefined) {
+                    modal.style.display = 'block';
+                    imageBtn = document.querySelector('#imagem').addEventListener('click', () => {
+                        shareData = {
+                            files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
+                        }
+                        modal.style.display = 'none';
+                    })
+                    
+                    linksBtn = document.querySelector('#links').addEventListener('click', () => {
+                        shareData = {
+                            text: links
+                        }
+                        modal.style.display = 'none';
+                    })
+                    
+                } else {
+                    // Envia a foto direto se a pessoa não tiver redes socias
+                    shareData = {
+                        files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
+                    }
+                    modal.style.display = 'none';
+                }
+
+
+
+
 
             }
             if (sistema == 'IOS') {
@@ -91,7 +122,6 @@ async function getPrint(div, facebookLink, instagramLink) {
 document.addEventListener('DOMContentLoaded', () => {
     fetch("./candidatos.json").then((response) => {
         response.json().then((dados) => {
-
             const cidadesSet = new Set();
             
             // Criando a lista de cidades únicas
@@ -114,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Evento escutando dentro do select
             selectCidades.addEventListener('change', () => {
                 let divCandidatos = document.querySelector('.candidatos');
+                modal.style.display = 'none'
                         
                 // Pega os candidatos com base no valor do select
                 const candidatosFiltrados = dados.candidatos.filter(candidato => candidato.cidade === selectCidades.value);
