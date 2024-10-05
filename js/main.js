@@ -254,12 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         instagramImg.id = 'uniqueIcon'
                     }
-
-                    // Adiciona o botão para tirar print
-                    botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => exibeModal(perfilDiv, facebookLink, instagramLink)); // Chama getPrint ao clicar
-                    perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
-
                     // Joga os dados tudo dentro da div 'perfilDiv'
                     perfilDiv.appendChild(foto);
                     perfilDiv.appendChild(nomeUrna);
@@ -267,6 +261,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     perfilDiv.appendChild(nomeCompleto);
                     perfilDiv.appendChild(cidade);
                     perfilDiv.appendChild(partido);
+
+                    // Adiciona o botão para tirar print
+                    botaoCompartilhar.src = 'images/shareIcon.svg';
+                    botaoCompartilhar.addEventListener('click', () => exibeModal(perfilDiv, facebookLink, instagramLink)); // Chama getPrint ao clicar
+                    perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
+
 
                     divCandidatos.appendChild(perfilDiv); // Exibe tudo na tela
                 });
