@@ -72,8 +72,6 @@ async function getPrint(div, facebookLink, instagramLink) {
             sistema = detectaSistema();
             const links = verificaRedes(facebookLink, instagramLink)
 
-            document.querySelector('#imagem').removeEventListener('click', compartilharImagem);
-            document.querySelector('#links').removeEventListener('click', compartilharLinks);
             
             if (sistema == 'Android') {
                 
@@ -85,7 +83,7 @@ async function getPrint(div, facebookLink, instagramLink) {
                             files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
                         }
                         modal.style.display = 'none';
-
+                        
                         if (navigator.share) {
                             navigator.share(shareData)
                         }
@@ -95,11 +93,13 @@ async function getPrint(div, facebookLink, instagramLink) {
                             text: links
                         }
                         modal.style.display = 'none';
-
+                        
                         if (navigator.share) {
                             navigator.share(shareData)
                         }
                     }
+                    document.querySelector('#imagem').removeEventListener('click', compartilharImagem);
+                    document.querySelector('#links').removeEventListener('click', compartilharLinks);
                     document.querySelector('#imagem').addEventListener('click', compartilharImagem)
                     document.querySelector('#links').addEventListener('click', compartilharLinks)
                     
