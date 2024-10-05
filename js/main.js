@@ -25,15 +25,15 @@ function detectaSistema() {
     return sistema;
 }
 
-async function getPrint(div, candidato) {
-
-    let facebookLink = candidato.facebook || ''; // Use empty string if no Facebook link
-    let instagramLink = candidato.instagram || ''; // Use empty string if no Instagram link
+async function getPrint(div, facebookLink, instagramLink) {
 
 
-    function verificaRedes() {
+    function verificaRedes(facebookLink, instagramLink) {
         let strFace = 'Facebook: '
         let strInsta = 'Instagram: '
+        facebookLink = facebookLink || ''; // Reinicializa a cada chamada
+        instagramLink = instagramLink || '';
+
         if(!facebookLink) {
             strFace = ''
         }
@@ -43,7 +43,7 @@ async function getPrint(div, candidato) {
         
         let textToShare = ''
         if (instagramLink || facebookLink) {
-            textToShare = (strFace + facebookLink) + '\n' +  (strInsta + instagramLink).trim();
+            textToShare = (strFace + facebookLink) + '\n' +  (strInsta + instagramLink);
             return textToShare;
         }
     }
@@ -72,7 +72,7 @@ async function getPrint(div, candidato) {
             const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
             
             sistema = detectaSistema();
-            let links = verificaRedes()
+            let links = verificaRedes(facebookLink, instagramLink)
 
             
             if (sistema == 'Android') {
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv,candidato)); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv,candidato.facebook, candidato.instagram)); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
