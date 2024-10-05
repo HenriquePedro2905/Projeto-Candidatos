@@ -25,17 +25,19 @@ function detectaSistema() {
     return sistema;
 }
 
-async function getPrint(div, facebookLink, instagramLink) {
+async function getPrint(div, candidato) {
 
-    function verificaRedes(facebookLink, instagramLink) {
+    let facebookLink = candidato.facebook || ''; // Use empty string if no Facebook link
+    let instagramLink = candidato.instagram || ''; // Use empty string if no Instagram link
+
+
+    function verificaRedes() {
         let strFace = 'Facebook: '
         let strInsta = 'Instagram: '
         if(!facebookLink) {
-            facebookLink = ''
             strFace = ''
         }
         if(!instagramLink) {
-            instagramLink = ''
             strInsta = ''
         }
         
@@ -70,7 +72,7 @@ async function getPrint(div, facebookLink, instagramLink) {
             const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
             
             sistema = detectaSistema();
-            const links = verificaRedes(facebookLink, instagramLink)
+            let links = verificaRedes()
 
             
             if (sistema == 'Android') {
@@ -226,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv,candidato.facebook,candidato.instagram)); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv,candidato)); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
