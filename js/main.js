@@ -6,7 +6,34 @@ let modal = document.querySelector('.modal')
 
 let voltarBtn = document.querySelector('#closeBtn').addEventListener('click',() => {
     modal.style.display = 'none'
-})
+});
+
+function verificaRedes(facebookLink, instagramLink) {
+    console.log('Verifcou rede social')
+
+    let strFace = 'Facebook: '
+    let strInsta = 'Instagram: '
+
+    facebookLink = facebookLink || ''; // Reinicializa a cada chamada
+    instagramLink = instagramLink || '';
+
+    if(facebookLink == '') {
+        strFace = ''
+    }
+    if(instagramLink == '') {
+        strInsta = ''
+    }
+
+    let textToShare;
+    
+    if (instagramLink || facebookLink) {
+        textToShare = (strFace + facebookLink) + '\n' +  (strInsta + instagramLink);
+    }
+    console.log(textToShare)
+    return textToShare;
+}
+
+
 function detectaSistema() {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     console.log('Detectou sistema')
@@ -25,19 +52,25 @@ function detectaSistema() {
     return sistema;
 }
 
-function exibeModal(div) {
+function exibeModal(div, facebook, instagram) {
+
+    let linkFace = facebook;
+    let linkInsta = instagram;
 
     let perfilDiv = div
-    let sistema = detectaSistema()
+    let sistemaAtual = detectaSistema()
 
-    if (sistema == 'IOS') {
+    if (sistemaAtual == 'IOS') {
         // Vai enviar a imagem direto sem abrir o modal
+        
+
     } else {
         modal.style.display = 'block'
 
         let btnImagem = document.getElementById('imagem');
         let btnLinks = document.getElementById('links');
 
+        // Enviar apenas a foto
         btnImagem.addEventListener('click', async () =>  {
 
             try {
@@ -60,31 +93,24 @@ function exibeModal(div) {
                 console.error('Erro ao compartilhar:', error);
             }                
             
-        })
+        }, {once: true})
+
+        btnLinks.addEventListener('click', () => {
+           
+            let textToShare = verificaRedes(linkFace, linkInsta);
+            
+            shareData = {
+                text: textToShare
+            }
+
+            if (navigator.share) {
+                navigator.share(shareData)
+            }
+        }, {once: true})
     }
 
 }
 
-// function verificaRedes(facebookLink, instagramLink) {
-//     console.log('Verifcou rede social')
-//     let strFace = 'Facebook: '
-//     let strInsta = 'Instagram: '
-//     facebookLink = facebookLink || ''; // Reinicializa a cada chamada
-//     instagramLink = instagramLink || '';
-
-//     if(!facebookLink) {
-//         strFace = ''
-//     }
-//     if(!instagramLink) {
-//         strInsta = ''
-//     }
-    
-//     let textToShare = ''
-//     if (instagramLink || facebookLink) {
-//         textToShare = (strFace + facebookLink) + '\n' +  (strInsta + instagramLink);
-//         return textToShare;
-//     }
-// }
 
 // if (sistema == 'Android') {
 //     // if (links != undefined) {
@@ -269,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => exibeModal(perfilDiv)); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', () => exibeModal(perfilDiv, facebookLink, instagramLink)); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
