@@ -68,40 +68,49 @@ async function getPrint(div, facebookLink, instagramLink) {
             // Remover o prefixo 'data:image/jpeg;base64,' da string
             const base64Data = imagem.split(',')[1];
             const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
-
-            sistema = detectaSistema();
-            links = verificaRedes(facebookLink, instagramLink)
             
-            let shareData;
+            sistema = detectaSistema();
+            const links = verificaRedes(facebookLink, instagramLink)
+            
             if (sistema == 'Android') {
                 
-                if (links != undefined) {
+                // if (links != undefined) {
                     modal.style.display = 'block';
-                    imageBtn = document.querySelector('#imagem').addEventListener('click', () => {
+
+                    const compartilharImagem = () => {
                         shareData = {
                             files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
                         }
                         modal.style.display = 'none';
-                    })
-                    
-                    linksBtn = document.querySelector('#links').addEventListener('click', () => {
+
+                        if (navigator.share) {
+                            navigator.share(shareData)
+                        }
+                    }
+                    const compartilharLinks = () => {
                         shareData = {
                             text: links
                         }
                         modal.style.display = 'none';
-                    })
-                    
-                } else {
-                    // Envia a foto direto se a pessoa não tiver redes socias
-                    shareData = {
-                        files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
+
+                        if (navigator.share) {
+                            navigator.share(shareData)
+                        }
                     }
-                    modal.style.display = 'none';
-                }
+                    document.querySelector('#imagem').addEventListener('click', compartilharImagem)
+                    document.querySelector('#links').addEventListener('click', compartilharLinks)
+                    
+                // } else {
+                //     // Envia a foto direto se a pessoa não tiver redes socias
+                //     shareData = {
+                //         files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
+                //     }
+                //     modal.style.display = 'none';
 
-
-
-
+                //     if (navigator.share) {
+                //         navigator.share(shareData)
+                //     }
+                // }
 
             }
             if (sistema == 'IOS') {
@@ -109,12 +118,11 @@ async function getPrint(div, facebookLink, instagramLink) {
                     text: links,
                     files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
                 };
+                if (navigator.share) {
+                    navigator.share(shareData);
+                }
             }
 
-
-            if (navigator.share) {
-                navigator.share(shareData);
-            }
         });
     });
 }
