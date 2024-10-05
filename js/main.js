@@ -25,8 +25,9 @@ function detectaSistema() {
     return sistema;
 }
 
-function exibeModal() {
+function exibeModal(div) {
 
+    let perfilDiv = div
     let sistema = detectaSistema()
 
     if (sistema == 'IOS') {
@@ -37,14 +38,28 @@ function exibeModal() {
         let btnImagem = document.getElementById('imagem');
         let btnLinks = document.getElementById('links');
 
-        btnImagem.addEventListener('click', () =>  {
-            let blobImage = getPrint();
-            let shareData = {
-                file: [new File([blobImage], "image.jpeg", { type: "image/jpeg" })]
-            }
-            if (navigator.share) {
-                navigator.share(shareData)
-            }
+        btnImagem.addEventListener('click', async () =>  {
+
+            try {
+                let blobImage = await getPrint(perfilDiv); // Aguarda a resolução da Promise
+                console.log(blobImage);
+        
+                let shareData = {
+                    files: [new File([blobImage], "image.jpeg", { type: "image/jpeg" })]
+                };
+
+                console.log(shareData);
+        
+                if (navigator.share) {
+                    await navigator.share(shareData); // Aguarda o compartilhamento
+                    console.log('Compartilhamento bem-sucedido');
+                } else {
+                    console.log('API de compartilhamento não suportada');
+                }
+            } catch (error) {
+                console.error('Erro ao compartilhar:', error);
+            }                
+            
         })
     }
 
@@ -140,9 +155,8 @@ async function getPrint(div) {
         return new Blob([byteArray], { type });
     }
 
-    
-    // Aguardar o carregamento da imagem
-    await new Promise(resolve => {
+    // Aguardar o carregamento da imagem e retornar o blob
+    return new Promise((resolve, reject) => {
         html2canvas(div, {
             scale: 2, // Ajuste o valor conforme necessário
             useCORS: true,
@@ -152,8 +166,11 @@ async function getPrint(div) {
             // Remover o prefixo 'data:image/jpeg;base64,' da string
             const base64Data = imagem.split(',')[1];
             let blob = base64ToBlob(base64Data); // Converter Base64 para Blob
-            
-            return blob
+            console.log('retornando blob');
+            resolve(blob); // Resolver a Promise com o blob
+        }).catch(error => {
+            console.error('Erro ao gerar canvas:', error);
+            reject(error); // Em caso de erro, rejeitar a Promise
         });
     });
 }
@@ -252,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => exibeModal()); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', () => exibeModal(perfilDiv)); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
