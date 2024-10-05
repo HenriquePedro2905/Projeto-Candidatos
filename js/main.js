@@ -7,9 +7,9 @@ let modal = document.querySelector('.modal')
 let voltarBtn = document.querySelector('#closeBtn').addEventListener('click',() => {
     modal.style.display = 'none'
 })
-
 function detectaSistema() {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    console.log('Detectou sistema')
 
     if(/android/i.test(userAgent)) {
         sistema = 'Android';
@@ -25,28 +25,110 @@ function detectaSistema() {
     return sistema;
 }
 
-async function getPrint(div, facebookLink, instagramLink) {
+function exibeModal() {
 
+    let sistema = detectaSistema()
 
-    function verificaRedes(facebookLink, instagramLink) {
-        let strFace = 'Facebook: '
-        let strInsta = 'Instagram: '
-        facebookLink = facebookLink || ''; // Reinicializa a cada chamada
-        instagramLink = instagramLink || '';
+    if (sistema == 'IOS') {
+        // Vai enviar a imagem direto sem abrir o modal
+    } else {
+        modal.style.display = 'block'
 
-        if(!facebookLink) {
-            strFace = ''
-        }
-        if(!instagramLink) {
-            strInsta = ''
-        }
-        
-        let textToShare = ''
-        if (instagramLink || facebookLink) {
-            textToShare = (strFace + facebookLink) + '\n' +  (strInsta + instagramLink);
-            return textToShare;
-        }
+        let btnImagem = document.getElementById('imagem');
+        let btnLinks = document.getElementById('links');
+
+        btnImagem.addEventListener('click', () =>  {
+            let blobImage = getPrint();
+            let shareData = {
+                file: [new File([blobImage], "image.jpeg", { type: "image/jpeg" })]
+            }
+            if (navigator.share) {
+                navigator.share(shareData)
+            }
+        })
     }
+
+}
+
+// function verificaRedes(facebookLink, instagramLink) {
+//     console.log('Verifcou rede social')
+//     let strFace = 'Facebook: '
+//     let strInsta = 'Instagram: '
+//     facebookLink = facebookLink || ''; // Reinicializa a cada chamada
+//     instagramLink = instagramLink || '';
+
+//     if(!facebookLink) {
+//         strFace = ''
+//     }
+//     if(!instagramLink) {
+//         strInsta = ''
+//     }
+    
+//     let textToShare = ''
+//     if (instagramLink || facebookLink) {
+//         textToShare = (strFace + facebookLink) + '\n' +  (strInsta + instagramLink);
+//         return textToShare;
+//     }
+// }
+
+// if (sistema == 'Android') {
+//     // if (links != undefined) {
+//         modal.style.display = 'block';
+
+//         const compartilharImagem = () => {
+//             let shareData = undefined
+//             shareData = {
+//                 files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
+//             }
+//             console.log('COMPARTILHOU IMAGEM', shareData)
+//             modal.style.display = 'none';
+            
+//             if (navigator.share) {
+//                 navigator.share(shareData)
+//             }
+//         }
+//         const compartilharLinks = () => {
+//             let shareData = undefined
+//             shareData = {
+//                 text: links
+//             }
+//             console.log('COMPARTILHOU LINKS', shareData)
+//             modal.style.display = 'none';
+            
+//             if (navigator.share) {
+//                 navigator.share(shareData)
+//                 shareData = undefined
+//             }
+//         }
+
+//         document.querySelector('#imagem').addEventListener('click', compartilharImagem)
+//         document.querySelector('#links').addEventListener('click', compartilharLinks)
+        
+//     // } else {
+//     //     // Envia a foto direto se a pessoa não tiver redes socias
+//     //     shareData = {
+//     //         files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
+//     //     }
+//     //     modal.style.display = 'none';
+
+//     //     if (navigator.share) {
+//     //         navigator.share(shareData)
+//     //     }
+//     // }
+
+// }
+// if (sistema == 'IOS') {
+//     shareData = {
+//         text: links,
+//         files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
+//     };
+//     if (navigator.share) {
+//         navigator.share(shareData);
+//     }
+// }
+
+
+async function getPrint(div) {
     
     function base64ToBlob(base64, type = 'image/jpeg') {
         const byteCharacters = atob(base64);
@@ -66,70 +148,12 @@ async function getPrint(div, facebookLink, instagramLink) {
             useCORS: true,
             backgroundColor: '#a8a8a8'  
         }).then(canvas => {
-            const imagem = canvas.toDataURL("image/jpeg");
+            let imagem = canvas.toDataURL("image/jpeg");
             // Remover o prefixo 'data:image/jpeg;base64,' da string
             const base64Data = imagem.split(',')[1];
-            const blob = base64ToBlob(base64Data); // Converter Base64 para Blob
+            let blob = base64ToBlob(base64Data); // Converter Base64 para Blob
             
-            sistema = detectaSistema();
-            let links = verificaRedes(facebookLink, instagramLink)
-
-            
-            if (sistema == 'Android') {
-                
-                // if (links != undefined) {
-                    modal.style.display = 'block';
-
-                    const compartilharImagem = () => {
-                        shareData = ''
-                        shareData = {
-                            files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
-                        }
-                        modal.style.display = 'none';
-                        
-                        if (navigator.share) {
-                            navigator.share(shareData)
-                        }
-                    }
-                    const compartilharLinks = () => {
-                        shareData = ''
-                        shareData = {
-                            text: links
-                        }
-                        modal.style.display = 'none';
-                        
-                        if (navigator.share) {
-                            navigator.share(shareData)
-                        }
-                    }
-                    document.querySelector('#imagem').removeEventListener('click', compartilharImagem);
-                    document.querySelector('#links').removeEventListener('click', compartilharLinks);
-                    document.querySelector('#imagem').addEventListener('click', compartilharImagem)
-                    document.querySelector('#links').addEventListener('click', compartilharLinks)
-                    
-                // } else {
-                //     // Envia a foto direto se a pessoa não tiver redes socias
-                //     shareData = {
-                //         files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
-                //     }
-                //     modal.style.display = 'none';
-
-                //     if (navigator.share) {
-                //         navigator.share(shareData)
-                //     }
-                // }
-
-            }
-            if (sistema == 'IOS') {
-                shareData = {
-                    text: links,
-                    files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
-                };
-                if (navigator.share) {
-                    navigator.share(shareData);
-                }
-            }
-
+            return blob
         });
     });
 }
@@ -228,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Adiciona o botão para tirar print
                     botaoCompartilhar.src = 'images/shareIcon.svg';
-                    botaoCompartilhar.addEventListener('click', () => getPrint(perfilDiv,candidato.facebook, candidato.instagram)); // Chama getPrint ao clicar
+                    botaoCompartilhar.addEventListener('click', () => exibeModal()); // Chama getPrint ao clicar
                     perfilDiv.appendChild(botaoCompartilhar); // Adiciona o botão ao perfilDiv
 
                     // Joga os dados tudo dentro da div 'perfilDiv'
