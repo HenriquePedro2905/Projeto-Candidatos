@@ -29,7 +29,6 @@ function verificaRedes(facebookLink, instagramLink) {
     if (instagramLink || facebookLink) {
         textToShare = (strFace + facebookLink) + '\n' +  (strInsta + instagramLink);
     }
-    console.log(textToShare)
     return textToShare;
 }
 
@@ -60,9 +59,22 @@ function exibeModal(div, facebook, instagram) {
     let perfilDiv = div
     let sistemaAtual = detectaSistema()
 
-    if (sistemaAtual == 'IOS') {
-        // Vai enviar a imagem direto sem abrir o modal
-        
+    if (sistemaAtual == 'IOS')  {
+        async function getImage() {
+            let blobImage = await getPrint(perfilDiv); // Aguarda a resolução da Promise
+            return blobImage;
+        }
+        let textToShare = verificaRedes(linkFace, linkInsta);
+
+        shareData = {
+            text: textToShare,
+            files: [new File([getImage()], "image.jpeg", { type: "image/jpeg" })]
+        }
+
+        if (navigator.share) {
+            navigator.share(shareData);
+        }
+
 
     } else {
         modal.style.display = 'block'
@@ -75,7 +87,6 @@ function exibeModal(div, facebook, instagram) {
 
             try {
                 let blobImage = await getPrint(perfilDiv); // Aguarda a resolução da Promise
-                console.log(blobImage);
         
                 let shareData = {
                     files: [new File([blobImage], "image.jpeg", { type: "image/jpeg" })]
@@ -83,6 +94,7 @@ function exibeModal(div, facebook, instagram) {
 
                 console.log(shareData);
         
+                modal.style.display = 'none'
                 if (navigator.share) {
                     await navigator.share(shareData); // Aguarda o compartilhamento
                     console.log('Compartilhamento bem-sucedido');
@@ -91,7 +103,7 @@ function exibeModal(div, facebook, instagram) {
                 }
             } catch (error) {
                 console.error('Erro ao compartilhar:', error);
-            }                
+            }
             
         }, {once: true})
 
@@ -102,7 +114,7 @@ function exibeModal(div, facebook, instagram) {
             shareData = {
                 text: textToShare
             }
-
+            modal.style.display = 'none'
             if (navigator.share) {
                 navigator.share(shareData)
             }
