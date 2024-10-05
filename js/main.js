@@ -79,6 +79,7 @@ async function getPrint(div, facebookLink, instagramLink) {
                     modal.style.display = 'block';
 
                     const compartilharImagem = () => {
+                        shareData = ''
                         shareData = {
                             files: [new File([blob], "image.jpeg", { type: "image/jpeg" })],
                         }
@@ -89,6 +90,7 @@ async function getPrint(div, facebookLink, instagramLink) {
                         }
                     }
                     const compartilharLinks = () => {
+                        shareData = ''
                         shareData = {
                             text: links
                         }
