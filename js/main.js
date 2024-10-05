@@ -71,6 +71,9 @@ async function getPrint(div, facebookLink, instagramLink) {
             
             sistema = detectaSistema();
             const links = verificaRedes(facebookLink, instagramLink)
+
+            document.querySelector('#imagem').removeEventListener('click', compartilharImagem);
+            document.querySelector('#links').removeEventListener('click', compartilharLinks);
             
             if (sistema == 'Android') {
                 
